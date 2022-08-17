@@ -174,6 +174,21 @@ img {
     text-align: center;
 }
 
+.bold {
+    font-weight: 900;
+    color: var(--main-red);
+}
+
+#particles-js{
+    width: 100%;
+    height: 800px;
+    background-color: var(--main-white);
+    background-image: url('');
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+
 .projects-section {
     text-align: center;
     padding: 10rem 2rem;
@@ -211,6 +226,24 @@ img {
 
 .project:hover .code {
     color: #ff7f50;
+}
+
+.project-icon {
+    margin: 50px;
+    color: var(--main-white);
+    font-size: 45px;
+    padding: 30px;
+    border-radius: 50%;
+    border-color: var(--main-white);
+    border-width: 2px;
+    border: solid;
+}
+
+.fas {
+    display: inline-block;
+    font-weight: lighter;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
 }
 
 .project-tile {
