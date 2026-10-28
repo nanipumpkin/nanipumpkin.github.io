@@ -1,0 +1,232 @@
+/* Portfólio — Marianne Costa Avalone
+   Paleta de papel vegetal e tinta de caneta técnica; um único azul de cianotipia como acento. */
+
+:root {
+  --paper: #eef1ee;
+  --paper-2: #e4e9e5;
+  --ink: #15212a;
+  --muted: #55626b;
+  --rule: #c3ccc7;
+  --accent: #23579b;
+  --accent-ink: #ffffff;
+  --grid: rgba(35, 87, 155, 0.06);
+
+  --f-head: "Archivo", "Arial Narrow", sans-serif;
+  --f-body: "Source Serif 4", Georgia, serif;
+
+  --step--1: 0.875rem;
+  --step-0: 1.125rem;
+  --step-1: 1.375rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(2rem, 4vw, 2.75rem);
+  --step-4: clamp(2.5rem, 6.5vw, 4.5rem);
+
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --measure: 38rem;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #10171c;
+    --paper-2: #172129;
+    --ink: #e3e8e5;
+    --muted: #9aa7ae;
+    --rule: #2b3a43;
+    --accent: #8db3e9;
+    --accent-ink: #10171c;
+    --grid: rgba(141, 179, 233, 0.05);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #10171c;
+  --paper-2: #172129;
+  --ink: #e3e8e5;
+  --muted: #9aa7ae;
+  --rule: #2b3a43;
+  --accent: #8db3e9;
+  --accent-ink: #10171c;
+  --grid: rgba(141, 179, 233, 0.05);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  /* Malha de 24px, como papel milimetrado: a referência à prancheta fica no fundo, sem disputar com o texto. */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  font-optical-sizing: auto;
+}
+
+a { color: var(--accent); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+h1, h2, h3 {
+  font-family: var(--f-head);
+  font-stretch: 75%;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+p { margin: 0 0 1em; }
+
+.wrap { max-width: 74rem; margin: 0 auto; padding: 0 var(--gutter); }
+
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: var(--gutter); top: 0.5rem; background: var(--paper); padding: 0.5rem 0.75rem; z-index: 10; }
+
+/* Cabeçalho */
+.top {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  padding: 1.25rem 0; border-bottom: 1px solid var(--rule);
+  font-family: var(--f-head); font-size: var(--step--1);
+}
+.top .home { color: var(--ink); text-decoration: none; font-weight: 600; font-stretch: 85%; font-size: 1rem; }
+.top nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.top nav a { color: var(--muted); text-decoration: none; }
+.top nav a:hover { color: var(--ink); }
+.top nav .lang { color: var(--accent); }
+
+/* Abertura */
+.hero {
+  display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem); align-items: center;
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(2.5rem, 6vw, 4.5rem);
+}
+.hero h1 { font-size: var(--step-4); font-stretch: 68%; max-width: 13ch; }
+.hero .who {
+  display: flex; align-items: center; gap: 0.875rem;
+  font-family: var(--f-head); font-size: 1rem; color: var(--muted); margin-bottom: 1.75rem;
+}
+.hero .who img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; filter: grayscale(0.25); }
+.hero .who strong { color: var(--ink); font-weight: 600; display: block; }
+.hero .lede { font-size: var(--step-1); line-height: 1.5; max-width: 32rem; margin-top: 1.5rem; color: var(--ink); }
+
+.cycle { width: 100%; height: auto; color: var(--muted); overflow: visible; }
+.cycle .arc { fill: none; stroke: currentColor; stroke-width: 1.4; }
+.cycle .arc.last { stroke: var(--accent); stroke-dasharray: 5 5; color: var(--accent); }
+.cycle .node { fill: var(--paper); stroke: var(--ink); stroke-width: 1.4; }
+.cycle .num { font-family: var(--f-head); font-size: 14px; font-weight: 600; fill: var(--ink); }
+.cycle .lbl { font-family: var(--f-head); font-stretch: 85%; font-size: 17px; fill: var(--ink); }
+.cycle .mid { font-family: var(--f-body); font-style: italic; font-size: 19px; fill: var(--muted); }
+.cycle-note { font-size: var(--step--1); color: var(--muted); max-width: 30rem; margin: 0.75rem auto 0; text-align: center; }
+
+/* Seções */
+.section { padding: clamp(2.5rem, 6vw, 4.5rem) 0; border-top: 1px solid var(--rule); }
+.section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 1rem 3rem; margin-bottom: 2rem; }
+.section-head h2 { font-size: var(--step-3); }
+.section-head p { color: var(--muted); max-width: var(--measure); margin: 0; align-self: end; }
+
+/* Diferenciais: três lentes lado a lado, sem cartões */
+.lenses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+.lens { padding: 0 1.5rem 0 0; }
+.lens + .lens { padding-left: 1.5rem; border-left: 1px solid var(--rule); }
+.lens h3 { font-size: var(--step-2); margin-bottom: 0.75rem; }
+.lens p { font-size: 1.0625rem; }
+.lens .proof { font-size: var(--step--1); color: var(--muted); margin: 0; }
+
+/* Estudos de caso: lista em linhas, a primeira com mais peso */
+.cases { list-style: none; margin: 0; padding: 0; }
+.case {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 0.5rem 3rem;
+  padding: 1.5rem 0; border-bottom: 1px solid var(--rule);
+}
+.case:first-child { border-top: 1px solid var(--ink); }
+.case .tags { font-family: var(--f-head); font-size: var(--step--1); color: var(--muted); margin: 0; }
+.case h3 { font-size: var(--step-2); margin-bottom: 0.5rem; }
+.case h3 a { color: var(--ink); text-decoration: none; }
+.case h3 a:hover { color: var(--accent); }
+.case p { margin: 0; max-width: var(--measure); }
+.case .more { display: inline-block; margin-top: 0.75rem; font-family: var(--f-head); font-size: 1rem; }
+.case.featured { background: var(--paper-2); padding-left: 1.25rem; padding-right: 1.25rem; margin: 0 -1.25rem; }
+
+/* Trajetória */
+.path { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
+.path li { border-top: 2px solid var(--ink); padding-top: 0.875rem; }
+.path h3 { font-size: 1.25rem; font-stretch: 85%; margin-bottom: 0.375rem; }
+.path p { font-size: 1rem; color: var(--muted); margin: 0; }
+
+/* Contato */
+.contact { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; font-family: var(--f-head); font-size: 1.125rem; }
+.contact a { font-weight: 500; }
+.foot { padding: 2rem 0 3rem; font-size: var(--step--1); color: var(--muted); border-top: 1px solid var(--rule); }
+
+/* Página de estudo de caso */
+.case-hero { padding: clamp(2.5rem, 7vw, 5rem) 0 2rem; }
+.case-hero .back { font-family: var(--f-head); font-size: var(--step--1); }
+.case-hero h1 { font-size: var(--step-4); font-stretch: 68%; max-width: 18ch; margin: 1.25rem 0 1.25rem; }
+.case-hero .lede { font-size: var(--step-1); line-height: 1.5; max-width: 40rem; }
+
+.facts {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem;
+  margin: 2rem 0 0; padding: 1.25rem 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule);
+}
+.facts dt { font-family: var(--f-head); font-size: var(--step--1); color: var(--muted); }
+.facts dd { margin: 0.25rem 0 0; font-size: 1rem; line-height: 1.45; }
+
+.story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); gap: 1rem 3rem; padding: 2.5rem 0; border-bottom: 1px solid var(--rule); }
+.story h2 { font-size: var(--step-2); }
+.story .body { max-width: var(--measure); }
+.story ul { padding-left: 1.1em; margin: 0 0 1em; }
+.story li { margin-bottom: 0.5em; }
+.story li::marker { color: var(--muted); }
+
+.figure { margin: 0; padding: 2.5rem 0; border-bottom: 1px solid var(--rule); }
+.figure figcaption { font-size: var(--step--1); color: var(--muted); max-width: var(--measure); margin-top: 1rem; }
+.method { width: 100%; height: auto; color: var(--ink); }
+.method .box { fill: var(--paper); stroke: var(--ink); stroke-width: 1.3; }
+.method .box.key { stroke: var(--accent); stroke-width: 2; }
+.method .box.end { fill: var(--accent); stroke: var(--accent); }
+.method .t { font-family: var(--f-head); font-stretch: 85%; font-size: 15px; fill: var(--ink); }
+.method .t.end { fill: var(--accent-ink); font-weight: 600; }
+.method .s { font-family: var(--f-body); font-size: 13px; fill: var(--muted); }
+.method .ln { fill: none; stroke: var(--muted); stroke-width: 1.3; }
+.method .phase { font-family: var(--f-body); font-style: italic; font-size: 14px; fill: var(--muted); }
+
+.pull { font-family: var(--f-head); font-stretch: 75%; font-weight: 500; font-size: var(--step-2); line-height: 1.25; max-width: 30ch; margin: 0; }
+
+.next { padding: 2.5rem 0 1rem; display: flex; gap: 1rem 2rem; flex-wrap: wrap; font-family: var(--f-head); }
+
+/* Telas menores */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero .art { max-width: 30rem; }
+  .section-head, .case, .story { grid-template-columns: 1fr; }
+  .lenses { grid-template-columns: 1fr; gap: 1.75rem; }
+  .lens, .lens + .lens { padding: 0; border-left: 0; }
+  .lens + .lens { padding-top: 1.75rem; border-top: 1px solid var(--rule); }
+  .path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .case.featured { margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; }
+}
+@media (max-width: 520px) {
+  .path, .facts { grid-template-columns: 1fr; }
+  .top { flex-direction: column; gap: 0.5rem; }
+}
+
+@media print {
+  body { background: #fff; color: #000; }
+  .top nav, .skip { display: none; }
+}
+
+/* Diagrama do método: horizontal em telas largas, vertical no celular */
+.method.mt { display: none; max-width: 22rem; margin: 0 auto; }
+@media (max-width: 760px) {
+  .method.mw { display: none; }
+  .method.mt { display: block; }
+}
